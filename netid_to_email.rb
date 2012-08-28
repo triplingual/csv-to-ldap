@@ -10,14 +10,20 @@ ldap = Net::LDAP.new(:host => "directory.yale.edu", :port => 389)
 
 people = []
 
-
 netids.each_with_index do |netid, i|
-	filter = Net::LDAP::Filter.eq("uid", netid)
+	puts "#{i*100/netids.size}%"
+	
+  filter = Net::LDAP::Filter.eq("uid", netid)
 	result = ldap.search(:base => "ou=People,o=yale.edu", :filter => filter, :attributes => LDAP_ATTRS)
     people[i] = []
-    LDAP_ATTRS.each do |attr|
-    	people[i] << result[0][attr.to_sym][0]
-    end   				
+  
+    if result[0]
+	    LDAP_ATTRS.each do |attr|
+	    	people[i] << result[0][attr.to_sym][0]
+	    end   				
+    else
+      people[i] << netid << "NOT VALID"
+	end
 end
 
 CSV.open("output.csv", "wb") do |csv|
