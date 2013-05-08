@@ -1,9 +1,9 @@
 require 'net-ldap'
 require 'csv'
 
-#Pull NetIDs from the first variable given to this script
+#Pull emails from the first variable given to this script
 PATH = ARGV[0]
-netids = CSV.read(PATH).flatten
+emails = CSV.read(PATH).flatten
 
 #Search based on these LDAP attributes
 LDAP_ATTRS = ["uid", "givenname", "sn", "mail", "collegename", "college", "class"]
@@ -12,12 +12,12 @@ LDAP_ATTRS = ["uid", "givenname", "sn", "mail", "collegename", "college", "class
 ldap = Net::LDAP.new(:host => "directory.yale.edu", :port => 389)
 people = []
 
-#Loop one netid at a time
-netids.each_with_index do |netid, i|
-  puts "#{i*100/netids.size}%"
+#Loop one email at a time
+emails.each_with_index do |email, i|
+  puts "#{i*100/emails.size}%"
 
-  #Search LDAP by netid
-  filter = Net::LDAP::Filter.eq("uid", netid)
+  #Search LDAP by email
+  filter = Net::LDAP::Filter.eq("mail", email)
   result = ldap.search(:base => "ou=People,o=yale.edu", :filter => filter, :attributes => LDAP_ATTRS)
   people[i] = []
 
@@ -26,7 +26,7 @@ netids.each_with_index do |netid, i|
       people[i] << result[0][attr.to_sym][0]
     end   				
   else
-    people[i] << netid << "NOT VALID"
+    people[i] << email << "NOT VALID"
   end
 end
 
