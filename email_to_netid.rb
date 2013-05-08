@@ -31,7 +31,7 @@ emails.each_with_index do |email, i|
 end
 
 #Write results to output.csv
-CSV.open("data/output.csv", "wb") do |csv|
+CSV.open("data/output "+Time.now.strftime("%Y-%m-%d-%H%M%S")+".csv", "wb") do |csv|
   csv << LDAP_ATTRS
   people.each do |person|
     csv << person
