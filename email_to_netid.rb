@@ -2,7 +2,12 @@ require 'net-ldap'
 require 'csv'
 
 #Pull emails from the first variable given to this script
-PATH = ARGV[0]
+if ARGV[0]
+  PATH = ARGV[0]
+else
+  PATH = "data/emails.csv"
+end
+
 emails = CSV.read(PATH).flatten
 
 #Search based on these LDAP attributes
