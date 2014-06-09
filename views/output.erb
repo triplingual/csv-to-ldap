@@ -1,0 +1,31 @@
+<head>
+<style>
+table, td, th {
+    border: 1px solid blue;
+}
+
+th {
+    background-color: blue;
+    color: white;
+}
+
+
+</style>
+</head>
+<body>
+<h1>Query Results</h1>
+    <table style="border:1px solid black;">
+<!--         <tr>
+        <% headers.each do |header| %>
+            <td><%= header%></td>
+        <% end %>
+        </tr> -->
+        <% @people.each do |person| %>
+            <tr>
+                <% person.each do |attribute| %>
+                    <td><%= attribute %></td>
+                <% end %>
+            </tr>
+        <% end %>
+    </table>
+</body>
