@@ -5,6 +5,7 @@ require 'pry'
 
 enable :sessions
 
+
 class YaleLDAPConverter
     LDAP_ATTRS = %w(uid givenname sn mail collegename college class UPI)
 
