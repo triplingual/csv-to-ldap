@@ -1,11 +1,12 @@
-            <h1>NetID Converter</h1>
-            <p>Please put in a list of NetIDs or Emails. These should be separated by newlines (by pressing enter after each one).</p>
-            <form role="form" action="parse" method="post">
-                <label>
-                    <p>NetIDs or Emails</p>
-                    <textarea class="form-control" name="inputlist"></textarea>
-                </label>
-                <br>
-                <input class="btn btn-default" type="submit" name="submit" value="Convert From NetID">
-                <input class="btn btn-default" type="submit" name="submit" value="Convert From Email">
-            </form>
+<h1>NetID Converter</h1>
+<p>Please put in a list of NetIDs or Emails. These should be separated by newlines (by pressing enter after each one).</p>
+<form role="form" action="parse" method="post">
+    <input type="hidden" name="_method" value="put">
+    <label>
+        <p>NetIDs or Emails</p>
+        <textarea class="form-control" name="inputlist"></textarea>
+    </label>
+    <br>
+    <input class="btn btn-default" type="submit" name="submit" value="Convert From NetID">
+    <input class="btn btn-default" type="submit" name="submit" value="Convert From Email">
+</form>

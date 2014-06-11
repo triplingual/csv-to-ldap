@@ -4,6 +4,7 @@ require 'net-ldap'
 require 'pry'
 
 enable :sessions
+enable :method_override
 
 
 class YaleLDAPConverter
@@ -78,7 +79,7 @@ get '/' do
   erb :index
 end
 
-post '/parse' do
+put '/parse' do
     if params[:submit] == "Convert From NetID"
         netidlist = params[:inputlist].split("\r\n")
         @people = YaleLDAPConverter.convertfromnetids(netidlist)
@@ -87,7 +88,9 @@ post '/parse' do
         @people = YaleLDAPConverter.convertfromemails(emaillist)
     end
     session[:people] = @people
-    session[:lasttime] = Time.now.to_s
+    # session[:lasttime] = Time.now.to_s
+    # @people was defined above
+    # erb :output
     redirect to('/output')
 end
 
