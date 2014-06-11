@@ -23,6 +23,7 @@ Script to take a CSV file of netids, and auto-fill with info from LDAP.
 
 #Sinatra App
 This can be run as a sinatra application
+
 1. Clone the repository
 2. Run `bundle install`
 3. Run the sinatra server with `ruby converter.rb`
