@@ -1,6 +1,6 @@
 csv-to-ldap
 ===========
-Take a list of netids, and auto-fill additional information from LDAP.
+Take a list of netids or emails, and auto-fill additional information from LDAP.
 
 
 #Sinatra App
